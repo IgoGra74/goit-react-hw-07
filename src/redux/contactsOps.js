@@ -1,13 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchContacts, addContact, deleteContact } from "../services/api";
-// import { addContact, deleteContact } from "./contactsSlice";
 
 export const apiGetContacts = createAsyncThunk(
   "contacts/fetchAll",
   async (_, thunkApi) => {
     try {
       const data = await fetchContacts();
-
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -20,7 +18,6 @@ export const apiAddContact = createAsyncThunk(
   async (newContact, thunkApi) => {
     try {
       const data = await addContact(newContact);
-
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -33,7 +30,6 @@ export const apiDeleteContact = createAsyncThunk(
   async (contactId, thunkApi) => {
     try {
       const data = await deleteContact(contactId);
-
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
