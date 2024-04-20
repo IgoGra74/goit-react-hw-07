@@ -2,13 +2,14 @@ import css from "./Contact.module.css";
 import { BsPersonFill } from "react-icons/bs";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsSlice";
+// import { deleteContact } from "../../redux/contactsSlice";
+import { apiDeleteContact } from "../../redux/contactsOps";
 
 const Contact = ({ data }) => {
   const { name, number, id } = data;
   const dispatch = useDispatch();
   const onDeleteContact = (contactId) => {
-    dispatch(deleteContact(contactId));
+    dispatch(apiDeleteContact(contactId));
   };
   const onDelete = () => {
     onDeleteContact(id);

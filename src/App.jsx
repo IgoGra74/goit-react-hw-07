@@ -2,10 +2,17 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import css from "./App.module.css";
-// import { requestContacts } from "./services/api";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { apiGetContacts } from "./redux/contactsOps";
 
 function App() {
-  // requestContacts();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(apiGetContacts());
+  }, [dispatch]);
+
   return (
     <>
       <div>

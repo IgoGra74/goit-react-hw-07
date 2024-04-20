@@ -1,17 +1,20 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+// import { addContact } from "../../redux/contactsSlice";
+import { apiAddContact } from "../../redux/contactsOps";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const onAddContact = (newContact) => {
-    dispatch(addContact(newContact));
+    dispatch(apiAddContact(newContact));
   };
-
+  //  useEffect(() => {
+  //    dispatch(apiGetContacts());
+  //  }, [dispatch]);
   const initialValues = {
     name: "",
     number: "",
@@ -25,14 +28,14 @@ const ContactForm = () => {
     number: Yup.string()
       .required("Number is required")
       .matches(
-        /^[0-9]{3}-[0-9]{2}-[0-9]{2}$/,
-        "Invalid phone number format (e.g., 555-56-23)"
+        /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/,
+        "Invalid phone number format (e.g., 555-562-2312)"
       ),
   });
 
   const onSubmit = (values, actions) => {
     const newContact = {
-      id: nanoid(),
+      // id: nanoid(),
       name: values.name,
       number: values.number,
     };
